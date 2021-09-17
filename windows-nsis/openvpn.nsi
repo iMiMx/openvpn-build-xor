@@ -48,7 +48,7 @@ SetCompressor /SOLID lzma
 ;General
 
 ; Package name as shown in the installer GUI
-Name "${PACKAGE_NAME} ${VERSION_STRING}"
+Name "${PACKAGE_NAME} (XOR) ${VERSION_STRING}"
 
 ; On 64-bit Windows the constant $PROGRAMFILES defaults to
 ; C:\Program Files (x86) and on 32-bit Windows to C:\Program Files. However,
@@ -86,7 +86,7 @@ VIAddVersionKey "FileVersion" "1.0.0"
 !define MUI_COMPONENTSPAGE_TEXT_TOP "Select the components to install/upgrade.  Stop any ${PACKAGE_NAME} processes or the ${PACKAGE_NAME} service if it is running.  All DLLs are installed locally."
 
 !define MUI_COMPONENTSPAGE_SMALLDESC
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\doc\INSTALL-win32.txt"
+;!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\doc\INSTALL-win32.txt"
 
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_ABORTWARNING
@@ -361,8 +361,8 @@ Section "${PACKAGE_NAME} User-Space Components" SecOpenVPNUserSpace
 !endif
 
 	SetOutPath "$INSTDIR\doc"
-	File "INSTALL-win32.txt"
-	File "${OPENVPN_ROOT_I686}\share\doc\openvpn\openvpn.8.html"
+	;File "INSTALL-win32.txt"
+	;File "${OPENVPN_ROOT_I686}\share\doc\openvpn\openvpn.8.html"
 
 	${If} ${SectionIsSelected} ${SecAddShortcutsWorkaround}
 		CreateDirectory "$SMPROGRAMS\${PACKAGE_NAME}\Documentation"
@@ -683,7 +683,7 @@ ${EndIf}
 
 	!insertmacro SelectByParameter ${SecAddShortcutsWorkaround} SELECT_SHORTCUTS 1
 	!insertmacro SelectByParameter ${SecOpenVPNUserSpace} SELECT_OPENVPN 1
-	!insertmacro SelectByParameter ${SecService} SELECT_SERVICE 1
+	!insertmacro SelectByParameter ${SecService} SELECT_SERVICE 0
 	!insertmacro SelectByParameter ${SecTAP} SELECT_TAP 1
 	!insertmacro SelectByParameter ${SecOpenVPNGUI} SELECT_OPENVPNGUI 1
 	!insertmacro SelectByParameter ${SecFileAssociation} SELECT_ASSOCIATIONS 1
